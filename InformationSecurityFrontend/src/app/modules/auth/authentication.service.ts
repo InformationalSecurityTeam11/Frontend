@@ -11,9 +11,9 @@ export class AuthenticationService {
 
 
   private headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    skip:'true',
+    'Content-Type': 'application/json'
   });
+
 
   user$ = new BehaviorSubject(null);
 
@@ -24,7 +24,6 @@ export class AuthenticationService {
     return this.http.post<Token>(environment.apiHost + 'api/user/login', auth, {
       headers:this.headers,
     });
-
   }
 
   isLoggedIn(): boolean{

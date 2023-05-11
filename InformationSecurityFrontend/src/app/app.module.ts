@@ -9,14 +9,12 @@ import { NavbarComponent } from './modules/layout/navbar/navbar.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {Interceptor} from "./modules/auth/interceptor/interceptor";
+import {AuthModule} from "./modules/auth/auth.module";
+import {LayoutModule} from "./modules/layout/layout.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
-    LoginComponent,
-    NavbarComponent,
-
 
   ],
   imports: [
@@ -25,8 +23,8 @@ import {Interceptor} from "./modules/auth/interceptor/interceptor";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
-
+    AuthModule,
+    LayoutModule
 
   ],
   providers: [
