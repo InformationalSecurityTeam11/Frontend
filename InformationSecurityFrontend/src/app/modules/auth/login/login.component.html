@@ -5,7 +5,9 @@
 
     <div class="col-12 col-md-4 p-5 reesen-green-background" style="border-radius: 10px">
 
-      <form login>
+      <form loginForm
+            [formGroup]="loginForm"
+            (ngSubmit)="login()">
         <div class="alert alert-danger" role="alert" *ngIf="hasError">
           Username or password are incorrect. Both fields must be atleast 4 characters long!
         </div>
