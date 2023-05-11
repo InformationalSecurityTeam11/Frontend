@@ -119,8 +119,13 @@ input:hover::-webkit-input-placeholder{
 }
 
 .logo-image{
-  width: 14vw;
+  width: 8vw;
   height:auto;
+}
+
+.form-check-label {
+  color: #124439;
+
 }
 
 .center {
@@ -134,7 +139,9 @@ input:hover::-webkit-input-placeholder{
   align-items: center;
   justify-content: center;
 }
-
+.confirmation-button {
+  width: 30%;
+}
 @media only screen and (max-width: 800px) {
   .logo-image{
     width: 20vw;

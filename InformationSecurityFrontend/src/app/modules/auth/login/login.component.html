@@ -1,0 +1,33 @@
+<section class="login-section">
+  <div class="row text-center align-items-center m-3">
+
+    <div class="col-12 col-md-4"></div>
+
+    <div class="col-12 col-md-4 p-5 reesen-green-background" style="border-radius: 10px">
+
+      <form login>
+        <div class="alert alert-danger" role="alert" *ngIf="hasError">
+          Username or password are incorrect. Both fields must be atleast 4 characters long!
+        </div>
+        <div class="mb-3">
+          <label for="email" class="col-form-label text-light align-text-left">Email Address</label>
+          <input type="text" class="form-control" name="email" id="email" placeholder="example@mail.com" formControlName="email">
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="col-form-label text-light align-text-left">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password123" formControlName="password">
+          <p class="align-text-right"><button (click)="sendEmailReset()" type="button" class="btn-reset" id="resetEmail"> Forgot Password?</button></p>
+
+        </div>
+
+        <div class="mb-3">
+          <button type="submit" class="bg-white reesen-green-text-color button-style" id="confirmLogin">Login</button>
+          <h3 class="py-3"><a [routerLink]="['/registration']" class="text-light">New Account? Register now! </a></h3>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</section>

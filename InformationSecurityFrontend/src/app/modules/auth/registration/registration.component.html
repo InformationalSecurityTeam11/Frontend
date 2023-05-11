@@ -9,7 +9,7 @@
               Join us!
             </div>
             <div class="col center">
-              <img src="../../../assets/img/carlogo2.png" alt="Car Logo" class="logo-image">
+              <img src="../../../assets/img/medal.png" alt="Car Logo" class="logo-image">
             </div>
           </div>
         </div>
@@ -32,9 +32,21 @@
                 <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password123">
               </div>
               <div class="mb-3 space">
-                <label for="homeAddress" class="label-reg">Home add</label>
-                <input type="text" formControlName="address" class="form-control" id="homeAddress" placeholder="Svetosavska 10">
+                <label class="label-reg ">Account activation method:</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" formControlName="activationMethod" name="activationMethod" value="Email" id="emailRadio">
+                  <label class="form-check-label" for="emailRadio">
+                    Email
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" formControlName="activationMethod" name="activationMethod" value="Phone" id="phoneRadio">
+                  <label class="form-check-label" for="phoneRadio">
+                    Phone
+                  </label>
+                </div>
               </div>
+
             </div>
             <div class="col">
               <div class="mb-3 space">
@@ -49,11 +61,6 @@
                 <label for="passwordRepet" class="label-reg ">Repeat password</label>
                 <input type="password" formControlName="repeatedPassword" class="form-control" id="passwordRepet" placeholder="Password123">
               </div>
-              <div class="mb-3 space">
-                <label class="custom-file-upload">
-                  <input type="file" id="selectAvatar"/> Choose photo
-                </label>
-              </div>
             </div>
 
             <div class="mb-3 text-center">
@@ -62,25 +69,10 @@
 
             <div class="mb-3">
               <div class="row methods">
-                <div class="col-4">
-                  <p class="line"></p>
-                </div>
-                <div class="col-4 reg-lbl">
-                  <p> Use other methods </p>
-                </div>
-                <div class="col-4">
-                  <p class="line"></p>
-                </div>
+
 
               </div>
 
-            </div>
-
-            <div class="mb-3">
-              <div class="text-center pics">
-                <img src="../../../assets/img/google.png" alt="google" style="width:40px;height:40px;margin-right: 60px;">
-                <img src="../../../assets/img/facebook.png" alt="apple" style="width:40px;height:40px;">
-              </div>
             </div>
           </div>
         </div>
