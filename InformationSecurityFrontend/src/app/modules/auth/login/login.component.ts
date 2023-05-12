@@ -15,8 +15,11 @@ import {LoginCredentials} from "../../../models/User";
 export class LoginComponent {
   loginForm = new FormGroup(
     {
-      email: new FormControl('', [Validators.required, Validators.minLength(4), Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(5)])
+      //TODO: VRATITI KAKO JE BILO
+      // email: new FormControl('', [Validators.required, Validators.minLength(4), Validators.email]),
+      // password: new FormControl('', [Validators.required, Validators.minLength(5)])
+      email: new FormControl(''),
+      password: new FormControl('')
     }
   );
   hasError = false;
@@ -35,13 +38,13 @@ export class LoginComponent {
       email: this.loginForm.value.email || "",
       password:this.loginForm.value.password || ""
     }
-    console.log(loginInfo)
     this.authenticationService.login(loginInfo).subscribe({
 
       next: (result) => {
         console.log(result)
         localStorage.setItem('user', JSON.stringify(result["accessToken"]));
         localStorage.setItem('refreshToken', JSON.stringify(result["refreshToken"]));
+        this.authenticationService.setUser();
 
       },
       error : (error) =>{
@@ -53,9 +56,6 @@ export class LoginComponent {
 
     });
   }
-
-
-
 
 
   sendEmailReset() {
