@@ -30,6 +30,8 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem('user');
         this.authenticationService.setUser();
         this.role = null;
+        this.router.navigate(['/home']);
+
       },
       error: (error) => {console.log(error);},
     });

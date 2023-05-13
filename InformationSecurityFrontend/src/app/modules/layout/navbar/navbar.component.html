@@ -10,7 +10,7 @@
         <div class="col-6 text-center  nav-items">
           <div id="full-screen">
             <span class="m-3 hover-underline-animation"><a [routerLink]="['/']">Home</a></span>
-            <span class="m-3 hover-underline-animation"><a [routerLink]="['/']">Profile</a></span>
+            <span class="m-3 hover-underline-animation" *ngIf="role !== null"><a [routerLink]="['/newCertificate']">New certificate</a></span>
             <span class="m-3 hover-underline-animation"><a [routerLink]="['/']">Reports</a></span>
           </div>
         </div>

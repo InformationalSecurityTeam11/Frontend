@@ -11,10 +11,12 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {Interceptor} from "./modules/auth/interceptor/interceptor";
 import {AuthModule} from "./modules/auth/auth.module";
 import {LayoutModule} from "./modules/layout/layout.module";
+import { RequestFormComponent } from './modules/user/request-form/request-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    RequestFormComponent,
 
   ],
   imports: [
