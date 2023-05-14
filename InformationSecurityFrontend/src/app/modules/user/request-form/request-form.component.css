@@ -14,13 +14,13 @@ select {
 }
 
 .spec{
-  background-color:#48786d;
+  background-color:rgb(115,72,120);;
   border-radius: 15px 0px 0px 15px;
 }
 
 .reg-lbl{
   text-align: center;
-  color:#48786d;
+  color:rgb(115,72,120);;
 }
 
 .methods{
@@ -32,7 +32,7 @@ select {
   color:white;
   margin-top: 7px;
   width: 30%;
-  background-color:#48786d;
+  background-color:rgb(115,72,120);;
   padding:6px 26px;
   border-radius: 8px;
   border: 1px transparent;
