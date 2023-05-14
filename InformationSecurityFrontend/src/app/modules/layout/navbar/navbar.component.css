@@ -5,7 +5,7 @@
 
 .logout-button {
   font-size: 18px;
-  color: rgba(81, 116, 112, 1);
+  color: rgb(73, 34, 71);
   background-color: transparent;
   margin-right: 10px;
   padding: 0px 16px;
@@ -22,7 +22,7 @@
 }
 
 .btn-primary {
-  background-color: rgba(81, 116, 112, 1);
+  background-color: rgb(73, 34, 71);
   border-color: rgba(81, 116, 112, 1);
   margin-right: 20px;
   margin-bottom: 5px;
