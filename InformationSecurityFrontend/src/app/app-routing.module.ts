@@ -6,7 +6,7 @@ import {RequestFormComponent} from "./modules/user/request-form/request-form.com
 import {CertificatesViewComponent} from "./modules/user/certificates-view/certificates-view.component";
 import {ValidationComponent} from "./modules/user/validation/validation.component";
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {path: 'registration', component: RegistrationComponent },
   {path: 'newCertificate', component: RequestFormComponent},
