@@ -10,8 +10,11 @@
         <div class="col-6 text-center  nav-items">
           <div id="full-screen">
             <span class="m-3 hover-underline-animation"><a [routerLink]="['/']">Home</a></span>
-            <span class="m-3 hover-underline-animation" *ngIf="role !== null"><a [routerLink]="['/newCertificate']">New certificate</a></span>
-            <span class="m-3 hover-underline-animation"><a [routerLink]="['/']">Reports</a></span>
+            <span class="m-3 hover-underline-animation" *ngIf="role !== null"><a [routerLink]="['/newCertificate']">Request</a></span>
+            <span class="m-3 hover-underline-animation" *ngIf="role !== null"><a [routerLink]="['/allCertificates']">All certificates</a></span>
+            <span class="m-3 hover-underline-animation" *ngIf="role !== null"><a [routerLink]="['/myCertificates']" [queryParams]="{ own: true }">My certificates</a></span>
+            <span class="m-3 hover-underline-animation" *ngIf="role !== null"><a [routerLink]="['/validation']">Validation</a></span>
+
           </div>
         </div>
 

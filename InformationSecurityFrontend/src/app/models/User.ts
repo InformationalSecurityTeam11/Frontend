@@ -4,8 +4,8 @@ export interface User{
   surname:string;
   telephoneNumber:string;
   email:string;
-  password:string;
-  activationMethod: string;
+  password?:string;
+  activationMethod?: string;
 }
 
 export interface LoginCredentials {

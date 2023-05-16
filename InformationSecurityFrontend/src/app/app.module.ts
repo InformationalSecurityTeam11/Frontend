@@ -12,11 +12,15 @@ import {Interceptor} from "./modules/auth/interceptor/interceptor";
 import {AuthModule} from "./modules/auth/auth.module";
 import {LayoutModule} from "./modules/layout/layout.module";
 import { RequestFormComponent } from './modules/user/request-form/request-form.component';
+import { CertificatesViewComponent } from './modules/user/certificates-view/certificates-view.component';
+import { ValidationComponent } from './modules/user/validation/validation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RequestFormComponent,
+    CertificatesViewComponent,
+    ValidationComponent,
 
   ],
   imports: [

@@ -19,10 +19,6 @@
           <div class="row">
 
             <div class="col">
-              <div class="form-group">
-                <label for="serialNumber" class="form-label d-block">Parent certificate serial number:</label>
-                  <input type="number" formControlName="serialNumber" id="serialNumber" class="form-control text-center">
-              </div>
 
               <div class="form-group">
                 <label for="organization">Organization</label>
@@ -37,9 +33,13 @@
                 <select class="form-control" id="type" formControlName="type">
                   <option value="INTERMEDIATE" selected>INTERMEDIATE</option>
                   <!--TODO: If role is Admin then show ROOT -->
-                  <option value="ROOT">ROOT</option>
+                  <option value="ROOT" *ngIf="role === 'ROLE_ADMIN'">ROOT</option>
                   <option value="END">END</option>
                 </select>
+              </div>
+              <div class="form-group" *ngIf="!isRoot">
+                <label for="serialNumber" class="form-label d-block">Parent certificate serial number:</label>
+                <input type="number" formControlName="serialNumber" id="serialNumber" class="form-control text-center">
               </div>
               <div class="text-center">
               <button type="submit" class="btn btn-primary signup">Send</button>

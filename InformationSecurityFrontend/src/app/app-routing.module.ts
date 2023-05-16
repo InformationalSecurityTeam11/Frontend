@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import {RegistrationComponent} from "./modules/auth/registration/registration.component";
 import {LoginComponent} from "./modules/auth/login/login.component";
 import {RequestFormComponent} from "./modules/user/request-form/request-form.component";
+import {CertificatesViewComponent} from "./modules/user/certificates-view/certificates-view.component";
+import {ValidationComponent} from "./modules/user/validation/validation.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'registration', component: RegistrationComponent },
+  {path: 'registration', component: RegistrationComponent },
   {path: 'newCertificate', component: RequestFormComponent},
+  {path: 'allCertificates', component: CertificatesViewComponent},
+  {path: 'myCertificates', component:CertificatesViewComponent},
+  {path: 'validation', component:ValidationComponent},
   {path: 'home', component: LoginComponent}
 ];
 
