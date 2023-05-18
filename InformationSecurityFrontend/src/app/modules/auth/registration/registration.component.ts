@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {User} from "../../../models/User";
 import {UserService} from "../../services/user/user.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-registration',
@@ -21,6 +22,8 @@ export class RegistrationComponent {
     activationMethod: new FormControl("Email")// početna vrednost Email
   });
   hasError : boolean = false;
+  verification: boolean = false;
+  verificationCode: any;
 
   constructor(private router: Router, private userService : UserService){
 
@@ -52,9 +55,42 @@ export class RegistrationComponent {
         telephoneNumber: this.registerForm.value.phoneNumber || "",
         email:this.registerForm.value.email || "",
         password: this.registerForm.value.password || "",
-        activationMethod: this.registerForm.value.activationMethod || "Email"
+        activationMethod: this.registerForm.value.activationMethod?.toUpperCase() || "EMAIL"
       }
+      // posalji zahtev za registraciju
+      this.userService.registerStandardUser(user).subscribe({
+        next: (result) => {
+          console.log(result);
+        },
+        error: (error) => {
+          if(error instanceof HttpErrorResponse){
+            this.hasError = true;
+            console.log(error)
+          }
+        }
+      })
+      this.hasError = false;
+      this.verification = true;
+
     }
 
+  }
+
+  submitForm() {
+
+    this.userService.activateAccount(this.verificationCode).subscribe({
+      next: (result) => {
+        console.log(result)
+        alert("Successfully activated!")
+        this.verification = false;
+
+      },
+      error: (error) => {
+        if(error instanceof HttpErrorResponse){
+          this.hasError = true;
+          console.log(error)
+        }
+      }
+    })
   }
 }

@@ -6,7 +6,10 @@ export interface User{
   email:string;
   password?:string;
   activationMethod?: string;
+  userType?: string;
+  id?:number;
 }
+
 
 export interface LoginCredentials {
   email : string;
