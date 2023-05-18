@@ -11,28 +11,30 @@ import {LoginCredentials} from "../../models/User";
 })
 export class AuthenticationService {
 
-
   private headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
 
-
   user$ = new BehaviorSubject(null);
   userState$ = this.user$.asObservable();
 
-
   constructor(private http:HttpClient) {
-    this.user$.next(this.getRole());
-
+    // this.user$.next(this.getRole());
   }
 
-  login(auth:any):Observable<Token>{
+  login(auth:any):Observable<any>{
     //TODO: VRATITI KAKO JE BILO
     const loginInfo : LoginCredentials = {
-      email: "veljkovex@gmail.com",
+      email: "veljkobubnjevic01@gmail.com",
       password: "123456"
     }
-    return this.http.post<Token>(environment.apiHost + 'api/user/login', loginInfo, {
+    return this.http.post<any>(environment.apiHost + 'api/user/login', loginInfo, {
+      headers:this.headers,
+    });
+  }
+
+  confirmLogin(verification: string) : Observable<any> {
+    return this.http.post<any>(environment.apiHost + 'api/user/login/confirm/' + verification, {
       headers:this.headers,
     });
   }

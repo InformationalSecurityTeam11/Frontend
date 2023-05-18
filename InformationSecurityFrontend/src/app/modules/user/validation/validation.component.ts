@@ -35,14 +35,32 @@ export class ValidationComponent {
   }
 
   onFileSelected(event: any) {
-
     this.certificateFile = event.target.files[0];
   }
 
   verifyByCertificateFile() {
     if (this.certificateFile) {
-      // Logika za proveru validnosti sertifikata putem upload-a sertifikata
-      console.log('Provera putem upload-a sertifikata:', this.certificateFile);
+      const formData = new FormData();
+      formData.append('file', this.certificateFile);
+      this.certificateService.verifyCertificate(formData).subscribe({
+        next: (response) => {
+          console.log("response:", response)
+          if (response ===  'Certificate is valid') {
+            this.invalidCertificate = false;
+            this.validCertificate = true;
+          }
+          else if (response === 'Certificate is invalid') {
+            this.validCertificate = false;
+            this.invalidCertificate = true;
+          }
+        }
+        ,
+        error: (error) => {
+          if (error instanceof HttpErrorResponse) {
+            console.log(error);
+          }
+        }
+      });
     }
   }
 

@@ -23,6 +23,8 @@ export class LoginComponent {
     }
   );
   hasError = false;
+  verification = false;
+  verificationCode: any;
 
   constructor(private router:Router,
               private authenticationService: AuthenticationService,
@@ -42,10 +44,7 @@ export class LoginComponent {
 
       next: (result) => {
         console.log(result)
-        localStorage.setItem('user', JSON.stringify(result["accessToken"]));
-        localStorage.setItem('refreshToken', JSON.stringify(result["refreshToken"]));
-        this.authenticationService.setUser();
-
+        this.verification = true;
       },
       error : (error) =>{
         if(error instanceof HttpErrorResponse){
@@ -57,9 +56,27 @@ export class LoginComponent {
     });
   }
 
+  submitForm() {
+    this.authenticationService.confirmLogin(this.verificationCode).subscribe({
+      next: (result) => {
+        console.log(result)
+        localStorage.setItem('user', JSON.stringify(result["accessToken"]));
+        localStorage.setItem('refreshToken', JSON.stringify(result["refreshToken"]));
+        this.authenticationService.setUser();
+        this.router.navigate(['/allCertificates']);
+
+      },
+      error: (error) => {
+        if(error instanceof HttpErrorResponse){
+          this.hasError = true;
+          console.log(error)
+        }
+      }
+    })
+
+  }
 
   sendEmailReset() {
 
   }
-
 }

@@ -51,7 +51,7 @@ export class CertificatesViewComponent implements OnInit{
 
       const link = document.createElement('a');
       link.href = downloadURL;
-      link.download = 'certificate.cer';
+      link.download = 'certificate.txt';
 
       link.click();
       URL.revokeObjectURL(downloadURL);

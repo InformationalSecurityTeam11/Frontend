@@ -1,4 +1,37 @@
 
+
+.verification-form  label {
+    width: 100%;
+      display: block;
+      margin-bottom: 10px;
+      color: rgb(73, 34, 71);
+    }
+
+   .verification-form {
+   width: 100%;
+   background-color: rgb(240, 224, 255);
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+ .verification-form   input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(73, 34, 71);
+    border-radius: 5px;
+    }
+
+  .verification-form  button[type="submit"] {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: rgb(115, 72, 120);
+      color: rgb(240, 224, 255);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+
 .login-section{
   width: 90%;
   margin: 40px auto;
@@ -53,6 +86,11 @@ a:hover{
 }
 button:hover{
   color: #4B7869;
+}
+
+#verificationCode {
+  color: black;
+
 }
 
 input{

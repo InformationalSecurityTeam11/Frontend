@@ -23,12 +23,18 @@ export class CertificateService {
   }
 
   getAllCertificates(): Observable<CertificateInfo[]> {
+    this.headers =  new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
     return this.http.get<CertificateInfo[]>(environment.apiHost + 'api/certificate', {
       headers: this.headers,
     });
   }
 
   getOwnCertificates(): Observable<CertificateInfo[]> {
+    this.headers =  new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
     return this.http.get<CertificateInfo[]>(environment.apiHost + 'api/certificate/own', {
       headers: this.headers,
     });
@@ -49,4 +55,16 @@ export class CertificateService {
       headers: this.headers,
     });
   }
+
+  verifyCertificate(file: FormData): Observable<string> {
+    this.headers =  new HttpHeaders({
+    });
+    console.log(this.headers);
+    console.log(file);
+    return this.http.post(environment.apiHost + 'api/certificate/verify/upload', file, {
+      headers:this.headers,
+      responseType: 'text'
+    });
+  }
+
 }

@@ -19,10 +19,12 @@
             By upload a certificate
           </label>
         </div>
-        <div *ngIf="verificationMethod === 'certificateFile'">
-          <input type="file" (change)="onFileSelected($event)">
-          <button (click)="verifyByCertificateFile()">Validate</button>
-        </div>
+          <div *ngIf="verificationMethod === 'certificateFile'">
+            <form (submit)="verifyByCertificateFile()" enctype="multipart/form-data">
+              <input type="file" (change)="onFileSelected($event)">
+              <button type="submit">Validate</button>
+            </form>
+          </div>
           <div *ngIf="validCertificate">
             <span class="checkmark">&#10004;</span>
             <span class="valid">Certificate is valid</span>
