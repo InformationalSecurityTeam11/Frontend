@@ -77,6 +77,6 @@ export class LoginComponent {
   }
 
   sendEmailReset() {
-
+    this.router.navigate(['/resetPassword']);
   }
 }
