@@ -6,6 +6,8 @@ import {RequestFormComponent} from "./modules/user/request-form/request-form.com
 import {CertificatesViewComponent} from "./modules/user/certificates-view/certificates-view.component";
 import {ValidationComponent} from "./modules/user/validation/validation.component";
 import {PasswordRecoveryComponent} from "./modules/auth/password-recovery/password-recovery.component";
+import {RequestsTableComponent} from "./modules/user/requests-table/requests-table.component";
+import {PendingRequestsComponent} from "./modules/user/pending-requests/pending-requests.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +17,8 @@ export const routes: Routes = [
   {path: 'myCertificates', component:CertificatesViewComponent},
   {path: 'validation', component:ValidationComponent},
   {path: 'resetPassword', component:PasswordRecoveryComponent},
+  {path: 'requests', component:RequestsTableComponent},
+  {path: 'requestsForMe', component:PendingRequestsComponent},
   {path: 'home', component: LoginComponent}
 ];
 
