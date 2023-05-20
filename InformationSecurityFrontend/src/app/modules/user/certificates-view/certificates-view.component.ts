@@ -20,7 +20,7 @@ export class CertificatesViewComponent implements OnInit{
     this.route.url.subscribe(urlSegments => {
       this.own = urlSegments.join('/') === 'myCertificates';
     });
-    if (this.urlSegment === 'myCertificates')
+    if (!this.own)
     this.certificateService.getAllCertificates().subscribe( {
       next: (result) => {
         this.certificates = result;
