@@ -14,3 +14,12 @@ export interface ValidateCertificate {
   startDate : string,
   expiredDate :string
 }
+
+export interface ApproveDTO {
+  id:number
+}
+
+export interface RejectionDTO {
+  id:number,
+  reason:string
+}
