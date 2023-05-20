@@ -11,15 +11,15 @@ body, html{
   background-color: rgba(241, 255, 224, 1);
 }
 
-.reesen-green-background{
-  background-color: #578979;
+.reesen-purple-background{
+  background-color: rgb(115,72,120);
 }
 .reesen-footer-bottom-background{
-  background-color: #4B7869;
+  background-color: rgb(115,72,120);
 }
 
-.reesen-green-text-color{
-  color: #578979;
+.reesen-purple-text-color{
+  color:rgb(115,72,120);
 }
 
 .reesen-big-lead-text{
@@ -64,5 +64,4 @@ body, html{
 }
 
 .confirmation-button:hover{
-  color: #3d5b51;
-}/* You can add global styles to this file, and also import other style files */
+  color: rgb(73, 34, 71);}/* You can add global styles to this file, and also import other style files */

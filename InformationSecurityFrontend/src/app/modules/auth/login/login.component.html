@@ -3,11 +3,12 @@
 
     <div class="col-12 col-md-4"></div>
 
-    <div class="col-12 col-md-4 p-5 reesen-green-background" style="border-radius: 10px">
+    <div class="col-12 col-md-4 p-5 reesen-purple-background" style="border-radius: 10px">
 
       <form loginForm
             [formGroup]="loginForm"
-            (ngSubmit)="login()">
+            (ngSubmit)="login()"
+            *ngIf="!verification">
         <div class="alert alert-danger" role="alert" *ngIf="hasError">
           Username or password are incorrect. Both fields must be atleast 4 characters long!
         </div>
@@ -24,14 +25,19 @@
         </div>
 
         <div class="mb-3">
-          <button type="submit" class="bg-white reesen-green-text-color button-style" id="confirmLogin">Login</button>
+          <button type="submit" class="bg-white reesen-purple-text-color button-style" id="confirmLogin">Login</button>
           <h3 class="py-4"><a [routerLink]="['/registration']" class="text-light">New Account?<br/> Register now! </a></h3>
         </div>
       </form>
 
+      <form (ngSubmit)="submitForm()" class="verification-form" *ngIf="verification">
+        <label for="verificationCode">Verification code:</label>
+        <input type="text" id="verificationCode" name="verificationCode" [(ngModel)]="verificationCode" required>
+        <button type="submit">Send</button>
+      </form>
 
 
     </div>
   </div>
-
 </section>
+

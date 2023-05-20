@@ -1,7 +1,8 @@
 <section class="register-section">
   <form register
         [formGroup]="registerForm"
-        (ngSubmit)="register()">
+        (ngSubmit)="register()"
+        *ngIf="!verification">
     <div class="register-container">
       <div class="row">
         <div class="col-4 spec center">
@@ -11,7 +12,7 @@
               Join us!
             </div>
             <div class="col center">
-              <img src="../../../assets/img/medal.png" alt="Car Logo" class="logo-image">
+              <img src="../../../assets/img/badge.png" alt="Logo" class="logo-image">
             </div>
           </div>
         </div>
@@ -71,6 +72,39 @@
 
             <div class="mb-3">
               <div class="row methods">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+  <form (ngSubmit)="submitForm()" class="verification-form" *ngIf="verification">
+    <div class="register-container">
+      <div class="row">
+        <div class="col-4 spec center">
+          <div class="row text-center">
+            <div class="col center reesen-big-lead-text join-us">
+              Come,<br>
+              Join us!
+            </div>
+            <div class="col center">
+              <img src="../../../assets/img/badge.png" alt="Logo" class="logo-image">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-8">
+          <h1 class="reg-lbl">Registration</h1>
+          <div class="row">
+
+            <div class="col">
+              <div class="mb-3 space">
+                  <label for="verificationCode">Verification code:</label>
+                  <input type="text" id="verificationCode" name="verificationCode" [(ngModel)]="verificationCode" required>
+                  <button type="submit">Send</button>
               </div>
             </div>
           </div>
