@@ -3,7 +3,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CertificateRequestIn} from "../../../models/CertificateRequestIn";
 import {Observable} from "rxjs";
 import {environment} from "../../../environment/environment";
-import {CertificateInfo, ValidateCertificate} from "../../../models/Certificate";
+import {ApproveDTO, CertificateInfo, RejectionDTO, ValidateCertificate} from "../../../models/Certificate";
+import {RequestInfoDTO} from "../../../models/Request";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,15 @@ export class CertificateService {
       'Content-Type': 'application/json'
     });
     return this.http.get<CertificateInfo[]>(environment.apiHost + 'api/certificate', {
+      headers: this.headers,
+    });
+  }
+
+  getPendingCertificates() : Observable<RequestInfoDTO[]> {
+    this.headers =  new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<RequestInfoDTO[]>(environment.apiHost + 'api/certificate/pendingRequests', {
       headers: this.headers,
     });
   }
@@ -65,6 +75,24 @@ export class CertificateService {
       headers:this.headers,
       responseType: 'text'
     });
+  }
+
+  approveCertificate(dto: ApproveDTO) : Observable<any> {
+    this.headers =  new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(environment.apiHost + 'api/certificate/approve', dto, {
+      headers:this.headers
+    })
+  }
+
+  rejectCertificate(dto: RejectionDTO) : Observable<any> {
+    this.headers =  new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(environment.apiHost + 'api/certificate/reject', dto, {
+      headers:this.headers
+    })
   }
 
 }

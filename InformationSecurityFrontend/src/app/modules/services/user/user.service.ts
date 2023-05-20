@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../../../models/User";
 import {Observable} from "rxjs";
 import {environment} from "../../../environment/environment";
+import {PasswordResetDTO, PasswordResetRequest} from "../../../models/PasswordResetRequest";
+import {RequestInfoDTO} from "../../../models/Request";
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +28,27 @@ export class UserService {
       headers:this.headers,
     });
   }
+
+  requestPasswordReset(contact : any, method:string) : Observable<any> {
+    const reset : PasswordResetRequest ={
+      passwordResetMethod : method,
+      contact : contact
+    }
+    return this.http.post<any>(environment.apiHost + 'api/user/password/reset/request', reset, {
+      headers:this.headers
+    })
+  }
+
+  resetPassword(resetCode : any, passwordReset : PasswordResetDTO) : Observable<any> {
+    return this.http.post<any>(environment.apiHost + 'api/user/password/reset/' + resetCode, passwordReset, {
+      headers:this.headers
+    })
+  }
+
+  getAllRequestsForAdmin() : Observable<RequestInfoDTO[]> {
+    return this.http.get<RequestInfoDTO[]>(environment.apiHost + 'api/certificate/requests', {
+      headers: this.headers
+    })
+  }
+
 }
