@@ -24,11 +24,12 @@ export class AuthenticationService {
 
   login(auth:any):Observable<any>{
     //TODO: VRATITI KAKO JE BILO
-    const loginInfo : LoginCredentials = {
-      email: "veljkobubnjevic01@gmail.com",
-      password: "123456"
-    }
-    return this.http.post<any>(environment.apiHost + 'api/user/login', loginInfo, {
+    // const loginInfo : LoginCredentials = {
+    //   email: "veljkobubnjevic01@gmail.com",
+    //   password: "123456"
+    // }
+    console.log(auth);
+    return this.http.post<any>(environment.apiHost + 'api/user/login', auth, {
       headers:this.headers,
     });
   }

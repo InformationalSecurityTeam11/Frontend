@@ -10,6 +10,8 @@ import {LayoutModule} from "./modules/layout/layout.module";
 import { RequestFormComponent } from './modules/user/request-form/request-form.component';
 import { CertificatesViewComponent } from './modules/user/certificates-view/certificates-view.component';
 import { ValidationComponent } from './modules/user/validation/validation.component';
+import { RequestsTableComponent } from './modules/user/requests-table/requests-table.component';
+import { PendingRequestsComponent } from './modules/user/pending-requests/pending-requests.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ValidationComponent } from './modules/user/validation/validation.compon
     RequestFormComponent,
     CertificatesViewComponent,
     ValidationComponent,
+    RequestsTableComponent,
+    PendingRequestsComponent,
 
   ],
   imports: [
