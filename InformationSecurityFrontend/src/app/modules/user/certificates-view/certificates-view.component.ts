@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {CertificateService} from "../../services/certificate/certificate.service";
 import {CertificateInfo} from "../../../models/Certificate";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-certificates-view',
@@ -12,6 +13,9 @@ export class CertificatesViewComponent implements OnInit{
   certificates: any;
   urlSegment : any;
   @Input() own: boolean = false;
+  rejectionReason: any;
+  certificateForRevoking : any;
+  showRevokingForm: boolean = false;
 
   constructor(private certificateService: CertificateService, private route: ActivatedRoute) {
   }
@@ -23,6 +27,7 @@ export class CertificatesViewComponent implements OnInit{
     if (!this.own)
     this.certificateService.getAllCertificates().subscribe( {
       next: (result) => {
+        console.log("RESULT: ", result);
         this.certificates = result;
       },
       error: (error) => {
@@ -58,4 +63,24 @@ export class CertificatesViewComponent implements OnInit{
     });
   }
 
+  setCertificateForRevoking(item: any) {
+    this.certificateForRevoking = item.serialNumber;
+    this.showRevokingForm = true;
+  }
+
+  revokeCertificate() {
+    if (!this.rejectionReason || this.rejectionReason.length < 3) {
+      alert("Enter valid reason!")
+    }
+    this.certificateService.revokeCertificate(this.certificateForRevoking, this.rejectionReason).subscribe({
+      next: value => {
+        console.log(value);
+
+      },
+      error: err => {
+        if (err instanceof HttpErrorResponse)
+          console.log(err);
+      }
+    })
+  }
 }

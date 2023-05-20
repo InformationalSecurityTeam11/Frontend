@@ -5,7 +5,8 @@ export interface CertificateInfo {
   startDate : string,
   expireDate : string,
   type : string,
-  serialNumber : number
+  serialNumber : number,
+  revokingReason ?: string
 
 }
 

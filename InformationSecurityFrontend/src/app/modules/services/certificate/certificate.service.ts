@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environment/environment";
 import {ApproveDTO, CertificateInfo, RejectionDTO, ValidateCertificate} from "../../../models/Certificate";
 import {RequestInfoDTO} from "../../../models/Request";
+import {RevokeDTO} from "../../../models/Revoke";
 
 @Injectable({
   providedIn: 'root'
@@ -92,6 +93,21 @@ export class CertificateService {
     });
     return this.http.post(environment.apiHost + 'api/certificate/reject', dto, {
       headers:this.headers
+    })
+  }
+
+  revokeCertificate(serialNumber : number, revokingReason : string) : Observable<string> {
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+    const dto : RevokeDTO = {
+      serialNumber : serialNumber,
+      reason : revokingReason
+    }
+
+    return this.http.post(environment.apiHost + "api/certificate/revoke", dto, {
+      headers:this.headers,
+      responseType: 'text'
     })
   }
 

@@ -35,3 +35,25 @@
   cursor: pointer;
 }
 
+.approve {
+  color: red;
+  padding: 10px 20px;
+  background-color: rgb(231, 203, 234);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#sendButton {
+  padding: 8px 20px;
+  background-color: rgb(115, 72, 120);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.revoke {
+  color: red;
+
+}
