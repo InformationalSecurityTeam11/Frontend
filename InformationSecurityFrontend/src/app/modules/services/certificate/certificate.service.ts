@@ -111,4 +111,12 @@ export class CertificateService {
     })
   }
 
+  downloadPrivateKey(serialNumber: number) : Observable<Blob> {
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+    return this.http.get<Blob>(environment.apiHost + "api/certificate/download/privateKey/" + serialNumber,
+      {headers:this.headers, responseType: 'blob' as 'json' })
+  }
+
 }

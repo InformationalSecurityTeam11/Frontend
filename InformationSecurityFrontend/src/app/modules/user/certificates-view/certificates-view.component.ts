@@ -83,4 +83,37 @@ export class CertificatesViewComponent implements OnInit{
       }
     })
   }
+
+  convertPrivateKeyToString(privateKeyArrayBuffer: ArrayBuffer): string {
+    const uint8Array = new Uint8Array(privateKeyArrayBuffer);
+    const decoder = new TextDecoder('utf-8');
+    const privateKeyString = decoder.decode(uint8Array);
+    const base64Key = btoa(privateKeyString);
+    return base64Key;
+  }
+
+
+
+
+  downloadPrivateKey(serialNumber: number) {
+    this.certificateService.downloadPrivateKey(serialNumber).subscribe({
+      next: value => {
+        value.arrayBuffer().then(arrayBuffer => {
+          const privateKeyString = this.convertPrivateKeyToString(arrayBuffer);
+          const blob = new Blob([privateKeyString], { type: 'application/octet-stream' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'privateKey.txt';
+          link.click();
+          URL.revokeObjectURL(url);
+        });
+      },
+      error: err => {
+        if (err instanceof HttpErrorResponse)
+          console.log(err);
+      }
+    })
+  }
+
 }
