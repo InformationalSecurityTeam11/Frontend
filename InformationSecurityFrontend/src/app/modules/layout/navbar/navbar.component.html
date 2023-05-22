@@ -9,7 +9,6 @@
 
         <div class="col-6 text-center  nav-items">
           <div id="full-screen">
-            <span class="m-3 hover-underline-animation"><a [routerLink]="['/home']">Home</a></span>
             <span class="m-3 hover-underline-animation" *ngIf="role !== null"><a [routerLink]="['/newCertificate']">New request</a></span>
             <span class="m-3 hover-underline-animation" *ngIf="role !== null"><a [routerLink]="['/allCertificates']">All certificates</a></span>
             <span class="m-3 hover-underline-animation" *ngIf="role !== null"><a [routerLink]="['/myCertificates']" [queryParams]="{ own: true }">My certificates</a></span>

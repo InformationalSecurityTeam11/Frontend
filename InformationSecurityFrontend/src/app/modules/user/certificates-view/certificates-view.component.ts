@@ -56,7 +56,7 @@ export class CertificatesViewComponent implements OnInit{
 
       const link = document.createElement('a');
       link.href = downloadURL;
-      link.download = 'certificate.txt';
+      link.download = 'certificate.crt';
 
       link.click();
       URL.revokeObjectURL(downloadURL);
@@ -104,7 +104,7 @@ export class CertificatesViewComponent implements OnInit{
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'privateKey.txt';
+          link.download = 'privateKey.p12';
           link.click();
           URL.revokeObjectURL(url);
         });
