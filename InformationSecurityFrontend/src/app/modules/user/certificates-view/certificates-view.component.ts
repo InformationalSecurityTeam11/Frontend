@@ -56,7 +56,7 @@ export class CertificatesViewComponent implements OnInit{
 
       const link = document.createElement('a');
       link.href = downloadURL;
-      link.download = 'certificate.crt';
+      link.download = 'certificate.pem';
 
       link.click();
       URL.revokeObjectURL(downloadURL);
@@ -92,28 +92,20 @@ export class CertificatesViewComponent implements OnInit{
     return base64Key;
   }
 
+  downloadPrivateKey(serialNumber : number) {
+    this.certificateService.downloadPrivateKey(serialNumber).subscribe(response => {
+      console.log("response: ",response);
+      const file = new Blob([response], { type: 'application/octet-stream' });
+      const downloadURL = URL.createObjectURL(file);
 
+      const link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = 'privateKey.pem';
 
-
-  downloadPrivateKey(serialNumber: number) {
-    this.certificateService.downloadPrivateKey(serialNumber).subscribe({
-      next: value => {
-        value.arrayBuffer().then(arrayBuffer => {
-          const privateKeyString = this.convertPrivateKeyToString(arrayBuffer);
-          const blob = new Blob([privateKeyString], { type: 'application/octet-stream' });
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = 'privateKey.p12';
-          link.click();
-          URL.revokeObjectURL(url);
-        });
-      },
-      error: err => {
-        if (err instanceof HttpErrorResponse)
-          console.log(err);
-      }
-    })
+      link.click();
+      URL.revokeObjectURL(downloadURL);
+    });
   }
+
 
 }
