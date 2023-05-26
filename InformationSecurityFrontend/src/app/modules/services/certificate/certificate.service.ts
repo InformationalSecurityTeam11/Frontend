@@ -51,6 +51,12 @@ export class CertificateService {
     });
   }
 
+  downloadCertificate(serial: number) : Observable<any> {
+    return this.http.get(environment.apiHost + 'api/certificate/download/' + serial, {
+      headers:this.headers,
+      responseType: 'blob',
+    });
+  }
 
   validateCertificate(serial: number):Observable<ValidateCertificate> {
     const validateCertificate = {
@@ -105,16 +111,12 @@ export class CertificateService {
     })
   }
 
-  downloadPrivateKey(serialNumber: number) : Observable<any> {
-    return this.http.get(environment.apiHost + "api/certificate/download/privateKey/" + serialNumber,
-      {headers:this.headers, responseType: 'blob', })
-  }
-
-  downloadCertificate(serial: number) : Observable<any> {
-    return this.http.get(environment.apiHost + 'api/certificate/download/' + serial, {
-      headers:this.headers,
-      responseType: 'blob',
-    });
+  downloadPrivateKey(serialNumber: number) : Observable<Blob> {
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+    return this.http.get<Blob>(environment.apiHost + "api/certificate/download/privateKey/" + serialNumber,
+      {headers:this.headers, responseType: 'blob' as 'json' })
   }
 
 }
