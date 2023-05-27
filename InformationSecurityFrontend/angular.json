@@ -58,6 +58,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "InformationSecurityFrontend:build",
+            "ssl": true,
+            "sslCert": "/Users/veljkobubnjevic/Documents/cert/certificate.crt",
+            "sslKey": "/Users/veljkobubnjevic/Documents/cert/privateKey.pem"
+          },
           "configurations": {
             "production": {
               "browserTarget": "InformationSecurityFrontend:build:production"
@@ -67,6 +73,8 @@
             }
           },
           "defaultConfiguration": "development"
+
+
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
