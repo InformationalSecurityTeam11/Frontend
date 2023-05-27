@@ -56,7 +56,7 @@ export class CertificatesViewComponent implements OnInit{
 
       const link = document.createElement('a');
       link.href = downloadURL;
-      link.download = 'certificate.pem';
+      link.download = 'certificate.crt';
 
       link.click();
       URL.revokeObjectURL(downloadURL);
@@ -84,13 +84,6 @@ export class CertificatesViewComponent implements OnInit{
     })
   }
 
-  convertPrivateKeyToString(privateKeyArrayBuffer: ArrayBuffer): string {
-    const uint8Array = new Uint8Array(privateKeyArrayBuffer);
-    const decoder = new TextDecoder('utf-8');
-    const privateKeyString = decoder.decode(uint8Array);
-    const base64Key = btoa(privateKeyString);
-    return base64Key;
-  }
 
   downloadPrivateKey(serialNumber : number) {
     this.certificateService.downloadPrivateKey(serialNumber).subscribe(response => {
