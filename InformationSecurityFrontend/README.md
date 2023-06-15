@@ -1,4 +1,9 @@
 # InformationSecurityFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
+NAPOMENA<br/>
+=======================================================<br/>
+ 
+Pre pokretanja u okviru assets foldera, treba dodati cert folder <br/>
+koji ce sadrzati u sebi `certificate.crt` i `privateKey.pem` fajl.
 
+=======================================================
