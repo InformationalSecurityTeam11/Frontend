@@ -18,7 +18,7 @@ export class RequestsTableComponent implements OnInit{
     this.userService.getAllRequestsForAdmin().subscribe({
       next: value => {
         this.certificateData = value;
-        console.log(this.certificateData[0].requestState)
+        console.log(value);
       },
       error: err => {
         if (err instanceof HttpErrorResponse) {

@@ -26,7 +26,7 @@
         </div>
       </form>
 
-      <div class="mb-3">
+      <div class="mb-3" *ngIf="!verification">
         <div class="text-center pics">
           <label style="color: white">Login with Google</label>
           <div id="buttonDiv" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
@@ -34,6 +34,12 @@
           </div>
         </div>
       </div>
+
+      <form (ngSubmit)="submitForm()" class="verification-form" *ngIf="verification">
+        <label for="verificationCode">Verification code:</label>
+        <input type="text" id="verificationCode" name="verificationCode" [(ngModel)]="verificationCode" required>
+        <button type="submit">Send</button>
+      </form>
 
     </div>
   </div>
