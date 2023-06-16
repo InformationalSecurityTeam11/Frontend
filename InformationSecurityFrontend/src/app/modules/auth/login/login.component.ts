@@ -69,7 +69,6 @@ export class LoginComponent implements AfterViewInit{
     this.userService.oauthSignIn(this.user).subscribe({
       next: (result) => {
         const keys = Object.keys(result);
-        console.log(result)
         if (keys.length === 2){
           localStorage.setItem('user', JSON.stringify(result["accessToken"]));
           this.authenticationService.setUser();
