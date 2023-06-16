@@ -65,7 +65,8 @@ export class RegistrationComponent {
         telephoneNumber: this.registerForm.value.phoneNumber || "",
         email:this.registerForm.value.email || "",
         password: this.registerForm.value.password || "",
-        activationMethod: this.registerForm.value.activationMethod?.toUpperCase() || "EMAIL"
+        activationMethod: this.registerForm.value.activationMethod?.toUpperCase() || "EMAIL",
+        recaptchaResponse : response
       }
       // posalji zahtev za registraciju
       this.userService.registerStandardUser(user).subscribe({

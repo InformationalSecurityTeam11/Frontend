@@ -101,13 +101,13 @@ export class LoginComponent implements AfterViewInit{
         if (response.length === 0) {
           this.hasError = true;
           this.errMsg = "Recaptcha not verified. Please try again!"
-          console.log("mamu ti jebem")
           return;
         }
 
     const loginInfo : LoginCredentials = {
       email: this.loginForm.value.email || "",
-      password:this.loginForm.value.password || ""
+      password:this.loginForm.value.password || "",
+      recaptchaResponse : response
     }
     this.authenticationService.login(loginInfo).subscribe({
 
