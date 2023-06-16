@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import { Router } from '@angular/router';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../authentication.service";
 import {UserService} from "../../services/user/user.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {LoginCredentials} from "../../../models/User";
+import {OAuthUser} from "../../../models/OAuthUser";
+declare var google: any;
 
 
 @Component({
@@ -12,7 +14,7 @@ import {LoginCredentials} from "../../../models/User";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit{
   loginForm = new FormGroup(
     {
       //TODO: VRATITI KAKO JE BILO
@@ -25,12 +27,70 @@ export class LoginComponent {
   hasError = false;
   verification = false;
   verificationCode: any;
+  type:String = "EMAIL"
+  sitekey:string = "6LemegUmAAAAAHGfsB3xSgM7okBwXo1jnoB0TF19"; // TODO: IZMENA
+  user: OAuthUser = {
+    name:"",
+    email:"",
+    surname:""
+  }
 
   constructor(private router:Router,
               private authenticationService: AuthenticationService,
               private userService: UserService) {
   }
 
+  ngAfterViewInit(): void {
+    google.accounts.id.initialize({
+      client_id: "991006796356-vkj5qicge880ehd0aj6vudgstflrddnl.apps.googleusercontent.com", // IZMENJENO NA MENE
+      callback: (response: any) => this.handleGoogleSignIn(response)
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { size: "large", type: "icon", shape: "pill" }  // customization attributes
+    );
+  }
+
+  handleGoogleSignIn(response: any) {
+
+
+    // This next is for decoding the idToken to an object if you want to see the details.
+    let base64Url = response.credential.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+
+    this.user.email = JSON.parse(jsonPayload).email;
+    this.user.name = JSON.parse(jsonPayload).given_name;
+    this.user.surname = JSON.parse(jsonPayload).family_name;
+
+    this.userService.oauthSignIn(this.user).subscribe({
+      next: (result) => {
+        const keys = Object.keys(result);
+        console.log(result)
+        if (keys.length === 2){
+          localStorage.setItem('user', JSON.stringify(result["accessToken"]));
+          this.authenticationService.setUser();
+          this.router.navigate(['/allCertificates']);
+        }
+        else{
+          this.userService.oauthSignIn(this.user).subscribe({
+            next: (result) => {
+              const keys = Object.keys(result);
+              if (keys.length === 1){
+                localStorage.setItem('user', JSON.stringify(result["accessToken"]));
+                this.authenticationService.setUser();
+                this.router.navigate(['/allCertificates']);
+              }}});
+        }
+
+      },
+
+
+    })
+  }
 
   login() {
     if(!this.loginForm.valid) {this.hasError = true; return;}
@@ -79,4 +139,6 @@ export class LoginComponent {
   sendEmailReset() {
     this.router.navigate(['/resetPassword']);
   }
+
+
 }

@@ -1,16 +1,13 @@
 <section class="login-section">
   <div class="row text-center align-items-center m-3">
-
     <div class="col-12 col-md-4"></div>
 
     <div class="col-12 col-md-4 p-5 reesen-purple-background" style="border-radius: 10px">
-
-      <form loginForm
-            [formGroup]="loginForm"
-            (ngSubmit)="login()"
-            *ngIf="!verification">
+      <div>
+      </div>
+      <form loginForm [formGroup]="loginForm" (ngSubmit)="login()" *ngIf="!verification">
         <div class="alert alert-danger" role="alert" *ngIf="hasError">
-          Username or password are incorrect. Both fields must be atleast 4 characters long!
+          Username or password are incorrect. Both fields must be at least 4 characters long!
         </div>
         <div class="mb-3">
           <label for="email" class="col-form-label text-light align-text-left">Email Address</label>
@@ -21,7 +18,6 @@
           <label for="password" class="col-form-label text-light align-text-left">Password</label>
           <input type="password" class="form-control" id="password" name="password" placeholder="Password123" formControlName="password">
           <p class="align-text-right"><button (click)="sendEmailReset()" type="button" class="btn-reset" id="resetEmail"> Forgot Password?</button></p>
-
         </div>
 
         <div class="mb-3">
@@ -30,14 +26,15 @@
         </div>
       </form>
 
-      <form (ngSubmit)="submitForm()" class="verification-form" *ngIf="verification">
-        <label for="verificationCode">Verification code:</label>
-        <input type="text" id="verificationCode" name="verificationCode" [(ngModel)]="verificationCode" required>
-        <button type="submit">Send</button>
-      </form>
+      <div class="mb-3">
+        <div class="text-center pics">
+          <label style="color: white">Login with Google</label>
+          <div id="buttonDiv" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
 
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
 </section>
-
