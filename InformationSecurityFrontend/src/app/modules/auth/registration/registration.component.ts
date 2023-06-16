@@ -5,6 +5,9 @@ import {User} from "../../../models/User";
 import {UserService} from "../../services/user/user.service";
 import {HttpErrorResponse} from "@angular/common/http";
 
+declare var grecaptcha: any;
+
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -47,6 +50,13 @@ export class RegistrationComponent {
     }
 
     if (this.registerForm.valid) {
+      const response = grecaptcha.getResponse();
+      console.log(response);
+        if (response.length === 0) {
+          this.hasError = true;
+          alert("Recaptcha not verified")
+          return;
+        }
       this.hasError = false;
       alert("Successfully registered")
       const user : User =  {
@@ -55,7 +65,8 @@ export class RegistrationComponent {
         telephoneNumber: this.registerForm.value.phoneNumber || "",
         email:this.registerForm.value.email || "",
         password: this.registerForm.value.password || "",
-        activationMethod: this.registerForm.value.activationMethod?.toUpperCase() || "EMAIL"
+        activationMethod: this.registerForm.value.activationMethod?.toUpperCase() || "EMAIL",
+        recaptchaResponse : response
       }
       // posalji zahtev za registraciju
       this.userService.registerStandardUser(user).subscribe({
