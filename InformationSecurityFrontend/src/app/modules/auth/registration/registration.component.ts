@@ -5,6 +5,9 @@ import {User} from "../../../models/User";
 import {UserService} from "../../services/user/user.service";
 import {HttpErrorResponse} from "@angular/common/http";
 
+declare var grecaptcha: any;
+
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -47,6 +50,13 @@ export class RegistrationComponent {
     }
 
     if (this.registerForm.valid) {
+      const response = grecaptcha.getResponse();
+      console.log(response);
+        if (response.length === 0) {
+          this.hasError = true;
+          alert("Recaptcha not verified")
+          return;
+        }
       this.hasError = false;
       alert("Successfully registered")
       const user : User =  {

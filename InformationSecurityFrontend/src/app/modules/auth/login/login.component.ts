@@ -7,7 +7,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {LoginCredentials} from "../../../models/User";
 import {OAuthUser} from "../../../models/OAuthUser";
 declare var google: any;
-
+declare var grecaptcha: any;
 
 @Component({
   selector: 'app-login',
@@ -27,6 +27,7 @@ export class LoginComponent implements AfterViewInit{
   hasError = false;
   verification = false;
   verificationCode: any;
+  errMsg : string = ""
   type:String = "EMAIL"
   sitekey:string = "6LemegUmAAAAAHGfsB3xSgM7okBwXo1jnoB0TF19"; // TODO: IZMENA
   user: OAuthUser = {
@@ -95,6 +96,14 @@ export class LoginComponent implements AfterViewInit{
   login() {
     if(!this.loginForm.valid) {this.hasError = true; return;}
     else this.hasError = false;
+    const response = grecaptcha.getResponse();
+    console.log(response);
+        if (response.length === 0) {
+          this.hasError = true;
+          this.errMsg = "Recaptcha not verified. Please try again!"
+          console.log("mamu ti jebem")
+          return;
+        }
 
     const loginInfo : LoginCredentials = {
       email: this.loginForm.value.email || "",
@@ -109,6 +118,7 @@ export class LoginComponent implements AfterViewInit{
       error : (error) =>{
         if(error instanceof HttpErrorResponse){
           this.hasError = true;
+          this.errMsg = "Username or password are incorrect. Both fields must be at least 4 characters long!"
           console.log(error)
         }
       }
@@ -129,6 +139,7 @@ export class LoginComponent implements AfterViewInit{
       error: (error) => {
         if(error instanceof HttpErrorResponse){
           this.hasError = true;
+          this.errMsg = "Username or password are incorrect. Both fields must be at least 4 characters long!"
           console.log(error)
         }
       }
