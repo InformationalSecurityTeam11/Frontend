@@ -35,7 +35,15 @@ export class ValidationComponent {
   }
 
   onFileSelected(event: any) {
-    this.certificateFile = event.target.files[0];
+    const file: File = event.target.files[0];
+    if (file.type !== 'application/x-x509-ca-cert') {
+      alert('Invalid file format. Please select a certificate file.');
+      event.target.value = '';
+      this.certificateFile = null;
+      return;
+    }
+    this.certificateFile = file;
+
   }
 
   verifyByCertificateFile() {
