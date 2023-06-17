@@ -63,6 +63,7 @@ export class RequestFormComponent implements OnInit {
         this.certificateService.createCertificateRequest(requestIn).subscribe({
           next: (result: ValidateCertificate) => {
               console.log(result);
+              alert("Request created!")
           },
           error: (error) => {
             if (error instanceof HttpErrorResponse) {

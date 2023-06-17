@@ -42,6 +42,16 @@ export class ValidationComponent {
       this.certificateFile = null;
       return;
     }
+    const fileSizeInBytes = file.size;
+    const maxSizeInBytes = 8 * 1024; // 8 KB
+
+    if (fileSizeInBytes > maxSizeInBytes) {
+      alert('File size exceeds the maximum limit of 8 KB.');
+      event.target.value = '';
+      this.certificateFile = null;
+      return;
+    }
+
     this.certificateFile = file;
 
   }

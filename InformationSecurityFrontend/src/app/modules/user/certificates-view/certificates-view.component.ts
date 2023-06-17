@@ -75,7 +75,7 @@ export class CertificatesViewComponent implements OnInit{
     this.certificateService.revokeCertificate(this.certificateForRevoking, this.rejectionReason).subscribe({
       next: value => {
         console.log(value);
-
+       alert("Certificate revoked!");
       },
       error: err => {
         if (err instanceof HttpErrorResponse)
