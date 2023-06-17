@@ -35,7 +35,25 @@ export class ValidationComponent {
   }
 
   onFileSelected(event: any) {
-    this.certificateFile = event.target.files[0];
+    const file: File = event.target.files[0];
+    if (file.type !== 'application/x-x509-ca-cert') {
+      alert('Invalid file format. Please select a certificate file.');
+      event.target.value = '';
+      this.certificateFile = null;
+      return;
+    }
+    const fileSizeInBytes = file.size;
+    const maxSizeInBytes = 8 * 1024; // 8 KB
+
+    if (fileSizeInBytes > maxSizeInBytes) {
+      alert('File size exceeds the maximum limit of 8 KB.');
+      event.target.value = '';
+      this.certificateFile = null;
+      return;
+    }
+
+    this.certificateFile = file;
+
   }
 
   verifyByCertificateFile() {

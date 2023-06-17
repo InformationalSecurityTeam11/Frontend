@@ -29,7 +29,7 @@
       </td>
 
       <td *ngIf="own" (click)="downloadCertificate(certificate)" class="dark-color ">Certificate</td>
-      <td *ngIf="own" (click)="downloadCertificate(certificate)" class="dark-color ">Key</td>
+      <td *ngIf="own" (click)="downloadPrivateKey(certificate.serialNumber)" class="dark-color ">Key</td>
       <td *ngIf="own && !certificate.revokingReason">
         <button class="approve" (click)="setCertificateForRevoking(certificate)">Revoke</button>
       </td>

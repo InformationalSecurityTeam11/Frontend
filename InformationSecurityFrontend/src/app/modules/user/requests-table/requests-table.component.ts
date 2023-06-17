@@ -14,11 +14,10 @@ export class RequestsTableComponent implements OnInit{
   }
 
   ngOnInit() {
-    // if role === AMDIN
     this.userService.getAllRequestsForAdmin().subscribe({
       next: value => {
         this.certificateData = value;
-        console.log(this.certificateData[0].requestState)
+        console.log(value);
       },
       error: err => {
         if (err instanceof HttpErrorResponse) {

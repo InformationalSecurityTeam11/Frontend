@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environment/environment";
 import {PasswordResetDTO, PasswordResetRequest} from "../../../models/PasswordResetRequest";
 import {RequestInfoDTO} from "../../../models/Request";
+import {OAuthUser} from "../../../models/OAuthUser";
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,12 @@ export class UserService {
 
   getAllRequestsForAdmin() : Observable<RequestInfoDTO[]> {
     return this.http.get<RequestInfoDTO[]>(environment.apiHost + 'api/certificate/requests', {
+      headers: this.headers
+    })
+  }
+
+  oauthSignIn(user: OAuthUser) : Observable<any> {
+    return this.http.post<any>(environment.apiHost + "api/user/oauth", user, {
       headers: this.headers
     })
   }

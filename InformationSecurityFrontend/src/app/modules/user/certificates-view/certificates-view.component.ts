@@ -56,7 +56,7 @@ export class CertificatesViewComponent implements OnInit{
 
       const link = document.createElement('a');
       link.href = downloadURL;
-      link.download = 'certificate.txt';
+      link.download = 'certificate.crt';
 
       link.click();
       URL.revokeObjectURL(downloadURL);
@@ -75,7 +75,7 @@ export class CertificatesViewComponent implements OnInit{
     this.certificateService.revokeCertificate(this.certificateForRevoking, this.rejectionReason).subscribe({
       next: value => {
         console.log(value);
-
+       alert("Certificate revoked!");
       },
       error: err => {
         if (err instanceof HttpErrorResponse)
@@ -83,4 +83,22 @@ export class CertificatesViewComponent implements OnInit{
       }
     })
   }
+
+
+  downloadPrivateKey(serialNumber : number) {
+    this.certificateService.downloadPrivateKey(serialNumber).subscribe(response => {
+      console.log("response: ",response);
+      const file = new Blob([response], { type: 'application/octet-stream' });
+      const downloadURL = URL.createObjectURL(file);
+
+      const link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = 'privateKey.pem';
+
+      link.click();
+      URL.revokeObjectURL(downloadURL);
+    });
+  }
+
+
 }

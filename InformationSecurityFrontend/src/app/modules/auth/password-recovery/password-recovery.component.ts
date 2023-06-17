@@ -118,7 +118,9 @@ export class PasswordRecoveryComponent implements OnInit{
       },
       error: err => {
         if (err instanceof HttpErrorResponse) {
-          console.log(err);
+          if (err.error.message === "New password cannot be previous password") {
+            alert("New password cannot be previous password")
+          }
         }
       }
     })
