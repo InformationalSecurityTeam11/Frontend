@@ -117,6 +117,9 @@ export class LoginComponent implements AfterViewInit{
       error : (error) =>{
         if(error instanceof HttpErrorResponse){
           this.hasError = true;
+          if (error.error.message === "Credentials expired, reset your password to continue")
+            this.errMsg = "Credentials expired, reset your password to continue"
+          else
           this.errMsg = "Username or password are incorrect. Both fields must be at least 4 characters long!"
           console.log(error)
         }
